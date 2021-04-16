@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -103,6 +104,13 @@ class BoatInputData {
                 String data1 = myReader.nextLine();
                 System.out.println(data1);
                 String array1[]= data1.split(";");
+                String name = array1[0];
+                int size = Integer.parseInt(array1[1])+100;
+                double depth = Float.parseFloat(array1[2])+1.50;
+
+                System.out.println("name"+name);
+                System.out.println("size"+size);
+                System.out.println("depth"+depth);
                 System.out.println(array1.length);
                 System.out.println(array1[0]);
                 System.out.println(array1[1]);

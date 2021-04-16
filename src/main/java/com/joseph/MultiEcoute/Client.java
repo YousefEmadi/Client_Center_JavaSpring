@@ -1,7 +1,5 @@
 package com.joseph.MultiEcoute;
 
-import java.sql.Date;
-
 public class Client {
     // attribs:
     int id;
@@ -9,10 +7,10 @@ public class Client {
     String name_last;
     String telephone;
     String dob;
-    char gender;
-    float balance;
+    String gender;
+    double balance;
 
-    public Client(int id, String name_first, String name_last, String telephone, String dob, char gender, float balance) {
+    public Client(int id, String name_first, String name_last, String telephone, String dob, String gender, double balance) {
         this.id = id;
         this.name_first = name_first;
         this.name_last = name_last;

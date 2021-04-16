@@ -12,6 +12,7 @@ public class Controller {
             case CREATE -> {doCreate();}
             case FIND -> {doFindAndShowClient();}
             case REMOVE -> {doFindAndRemoveClient();}
+            case LIST -> {doListOfAllClients();}
             case EXIT -> {doExit();}
         }
     }
@@ -38,6 +39,10 @@ public class Controller {
         Client foundClient = myClientList.findClient(id);
         myClientList.removeClient(foundClient);
         myUI.successfulMessage();
+    }
+
+    public void doListOfAllClients(){
+        myUI.showClientList(myClientList.readFromDatabaseFile());
     }
 
     public void doExit(){

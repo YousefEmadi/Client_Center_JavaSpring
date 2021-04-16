@@ -5,15 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 public class ClientsList implements ClientDatabase {
 
     private List<Client> clientList = new ArrayList<Client>();
-
-    Iterator<Client> itr = clientList.iterator();
 
 
     @Override
@@ -57,36 +54,43 @@ public class ClientsList implements ClientDatabase {
     }
 
 
-/**
+
     @Override
-    public void readFromFile() {
+    public List<Client> readFromDatabaseFile() {
         try {
             File myObj = new File("src\\main\\resources\\ClientDataFile.txt");
             Scanner myReader = new Scanner(myObj);
             System.out.println("\nDatabase content for Clients:");
+
+            // create a temporary Arraylist to hold client objects will be created by output stream from file
+            List<Client> tempClientList = new ArrayList<Client>();
             while (myReader.hasNextLine()) {
-                String data1 = myReader.nextLine();
-                String array1[]= data1.split(";");
 
-                field1 = array1[0];
-                field2 = Integer.parseInt(array1[1]);
-                field3 = Integer.parseInt(array1[2]);
-                Boat tempBoat = new Boat(field1, field2, field3);
-                boats.add(tempBoat);
+                // temporary Array from raw file data to create client objects
+                String rawData = myReader.nextLine();
+                String[] tempArray = rawData.split(";");
 
+                int id = Integer.parseInt(tempArray[0]);
+                String fname = tempArray[1];
+                String lname = tempArray[2];
+                String phone = tempArray[3];
+                String dob = tempArray[4];
+                String gender = tempArray[5];
+                double balance = Double.parseDouble(tempArray[6]);
+                Client clientToTempList = new Client(id,fname,lname,phone,dob, gender, balance);
+                tempClientList.add(clientToTempList);
 
             }
             myReader.close();
-
+            return tempClientList;
         } catch (FileNotFoundException e) {
             System.out.println("something is wrong with reading boat.txt");
             e.printStackTrace();
         }
 
-        for(int i = 0; i < boats.size(); i++) {
-            System.out.println(boats.get(i).toString());
-        }
-**/
+        return null;
+    }
+
 
 } //end of class:ClientsList
 

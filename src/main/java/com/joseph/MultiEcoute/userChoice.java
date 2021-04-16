@@ -2,6 +2,6 @@ package com.joseph.MultiEcoute;
 
 public enum userChoice {
 
-    CREATE, FIND, REMOVE, NONE, EXIT
+    CREATE, FIND, REMOVE, LIST, NONE, EXIT
 
 }

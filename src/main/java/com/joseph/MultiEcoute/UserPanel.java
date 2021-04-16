@@ -1,5 +1,6 @@
 package com.joseph.MultiEcoute;
 
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -13,12 +14,14 @@ public class UserPanel {
         System.out.println("  1. Add a new client");
         System.out.println("  2. Find a client by his/her ID");
         System.out.println("  3. Remove a client by his/her ID");
+        System.out.println("  4. List all of the clients with detail");
         System.out.println("  0. Exit from this user interface");
         int choiceNumber = input.nextInt();
         switch (choiceNumber) {
             case 1 -> {return userChoice.CREATE;}
             case 2 -> {return userChoice.FIND;}
             case 3 -> {return userChoice.REMOVE;}
+            case 4 -> {return userChoice.LIST;}
             case 0 -> {return userChoice.EXIT;}
             default -> {
                 System.out.println("Please enter an valid option number including 1, 2, 3 and 4\n");
@@ -39,7 +42,7 @@ public class UserPanel {
         System.out.print("Please enter client telephone: ");
         String phone = input.next();
 
-        Client newClient = new Client(id,fname,lname,phone,"2000-01-01", 'M',0);
+        Client newClient = new Client(id,fname,lname,phone,"2000-01-01", "M",0);
         return newClient;
     }
 
@@ -67,7 +70,14 @@ public class UserPanel {
         return id;
     }
 
-
+    public void showClientList(List<Client> list){
+        System.out.println("List of all the clients in the database");
+        for (Client client: list
+             ) {
+            showClient(client);
+            System.out.println("-------------------------------------");
+        }
+    }
 
     public void successfulMessage(){
         System.out.println("Your request has been processed successfully\n");
