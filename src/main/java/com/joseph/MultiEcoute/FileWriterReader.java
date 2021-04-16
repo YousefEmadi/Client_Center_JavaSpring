@@ -9,7 +9,7 @@ public class FileWriterReader {
 
     public void WriteIntoFile(Client client) {
         try {
-            FileWriter myWriter = new FileWriter("src\\\\main\\resources\\ClientDataFile.txt", true);
+            FileWriter myWriter = new FileWriter("src\\\\main\\resources\\Database.txt", true);
             myWriter.write(
             client.id + ";" +
                 client.name_first + ";" +

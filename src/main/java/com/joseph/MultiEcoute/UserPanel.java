@@ -11,11 +11,11 @@ public class UserPanel {
     //methods
     public userChoice requestUserOption(){
         System.out.println("Please, select one of these actions");
-        System.out.println("  1. Add a new client");
-        System.out.println("  2. Find a client by his/her ID");
-        System.out.println("  3. Remove a client by his/her ID");
-        System.out.println("  4. List all of the clients with detail");
-        System.out.println("  0. Exit from this user interface");
+        System.out.println("  1. Add a new client to database");
+        System.out.println("  2. Find a client by his/her ID from database");
+        System.out.println("  3. Remove a client by his/her ID from current session");
+        System.out.println("  4. List all of the clients from database");
+        System.out.println("  0. Exit from this user panel");
         int choiceNumber = input.nextInt();
         switch (choiceNumber) {
             case 1 -> {return userChoice.CREATE;}
@@ -54,13 +54,15 @@ public class UserPanel {
 
     public void showClient(Client clnt) {
         System.out.println(
-            "id: " + clnt.id +
+            "\n-------------------------------------"+
+            "\nid: " + clnt.id +
             "\nfirst name: " + clnt.name_first +
             "\nlast name: " + clnt.name_last +
             "\ntelephone: " + clnt.telephone +
             "\nDOB: " + clnt.dob +
             "\ngender: " + clnt.gender +
-            "\nbalance: " + clnt.balance
+            "\nbalance: " + clnt.balance +
+            "\n-------------------------------------"
         );
     }
 
@@ -70,12 +72,11 @@ public class UserPanel {
         return id;
     }
 
-    public void showClientList(List<Client> list){
+    public void showDatabaseClientList(List<Client> list){
         System.out.println("List of all the clients in the database");
         for (Client client: list
              ) {
             showClient(client);
-            System.out.println("-------------------------------------");
         }
     }
 

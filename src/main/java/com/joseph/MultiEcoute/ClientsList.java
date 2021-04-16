@@ -8,18 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
+
 public class ClientsList implements ClientDatabase {
 
     private List<Client> clientList = new ArrayList<Client>();
 
+    public static final String DEFAULT_FILE_PATH = "src\\main\\resources\\Database.txt";
 
     @Override
     public boolean addNewClient(Client newClient) {
         return clientList.add(newClient);
     }
 
+
+
     @Override
-    public Client findClient(int id) {
+    public Client findClientFromCurrentSession(int id) {
         for (Client cl : clientList) {
             if (cl.id == id) return cl;
         }
@@ -27,14 +32,24 @@ public class ClientsList implements ClientDatabase {
     }
 
     @Override
+    public Client findClientFromDatabaseClientList(int id) {
+        for (Client cl : retrieveDatabaseClientList()) {
+            if (cl.id == id) return cl;
+        }
+        return null;
+    }
+
+
+    @Override
     public boolean removeClient(Client client) {
         return clientList.remove(client);
     }
 
+
     @Override
-    public boolean writeIntoFile(Client client) {
+    public boolean writeIntoDatabase(Client client, String filePath) {
         try {
-            FileWriter myWriter = new FileWriter("src\\main\\resources\\ClientDataFile.txt", true);
+            FileWriter myWriter = new FileWriter(DEFAULT_FILE_PATH, true);
             myWriter.write(
             client.id + ";" +
                 client.name_first + ";" +
@@ -54,13 +69,12 @@ public class ClientsList implements ClientDatabase {
     }
 
 
-
     @Override
-    public List<Client> readFromDatabaseFile() {
+    public List<Client> retrieveDatabaseClientList() {
         try {
-            File myObj = new File("src\\main\\resources\\ClientDataFile.txt");
+            File myObj = new File("src\\main\\resources\\Database.txt");
             Scanner myReader = new Scanner(myObj);
-            System.out.println("\nDatabase content for Clients:");
+            System.out.println("\nDatabase content:");
 
             // create a temporary Arraylist to hold client objects will be created by output stream from file
             List<Client> tempClientList = new ArrayList<Client>();
@@ -77,8 +91,8 @@ public class ClientsList implements ClientDatabase {
                 String dob = tempArray[4];
                 String gender = tempArray[5];
                 double balance = Double.parseDouble(tempArray[6]);
-                Client clientToTempList = new Client(id,fname,lname,phone,dob, gender, balance);
-                tempClientList.add(clientToTempList);
+                Client clientToMainList = new Client(id,fname,lname,phone,dob, gender, balance);
+                tempClientList.add(clientToMainList);
 
             }
             myReader.close();
@@ -89,6 +103,14 @@ public class ClientsList implements ClientDatabase {
         }
 
         return null;
+    }
+
+    @Override
+    public boolean copyDatabaseToNewFile(String filePath) {
+        List<Client> copyOfClientList = retrieveDatabaseClientList();
+
+
+        return false;
     }
 
 

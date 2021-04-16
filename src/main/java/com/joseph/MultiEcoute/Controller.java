@@ -22,7 +22,7 @@ public class Controller {
         Client newClient = myUI.getNewClientToCreate();
         if (newClient != null){
             myClientList.addNewClient(newClient);
-            myClientList.writeIntoFile(newClient);
+            myClientList.writeIntoDatabase(newClient, ClientsList.DEFAULT_FILE_PATH);
             myUI.successfulMessage();
         }else
             myUI.failureMessage();
@@ -30,19 +30,19 @@ public class Controller {
 
     public void doFindAndShowClient(){
         int id = myUI.getClientIdToSearch();
-        Client foundClient = myClientList.findClient(id);
+        Client foundClient = myClientList.findClientFromDatabaseClientList(id);
         myUI.showClient(foundClient);
     }
 
     public void doFindAndRemoveClient(){
         int id = myUI.getClientIdToRemove();
-        Client foundClient = myClientList.findClient(id);
+        Client foundClient = myClientList.findClientFromDatabaseClientList(id);
         myClientList.removeClient(foundClient);
         myUI.successfulMessage();
     }
 
     public void doListOfAllClients(){
-        myUI.showClientList(myClientList.readFromDatabaseFile());
+        myUI.showDatabaseClientList(myClientList.retrieveDatabaseClientList());
     }
 
     public void doExit(){
