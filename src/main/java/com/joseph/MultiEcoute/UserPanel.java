@@ -15,6 +15,7 @@ public class UserPanel {
         System.out.println("  2. Find a client by his/her ID from database");
         System.out.println("  3. Remove a client by his/her ID from current session");
         System.out.println("  4. List all of the clients from database");
+        System.out.println("  5. Copy database into a new file");
         System.out.println("  0. Exit from this user panel");
         int choiceNumber = input.nextInt();
         switch (choiceNumber) {
@@ -22,6 +23,7 @@ public class UserPanel {
             case 2 -> {return userChoice.FIND;}
             case 3 -> {return userChoice.REMOVE;}
             case 4 -> {return userChoice.LIST;}
+            case 5 -> {return userChoice.COPY;}
             case 0 -> {return userChoice.EXIT;}
             default -> {
                 System.out.println("Please enter an valid option number including 1, 2, 3 and 4\n");
@@ -80,6 +82,11 @@ public class UserPanel {
         }
     }
 
+    public String getNewFilePath(){
+        System.out.println("Please enter a full path including file name for new copy of database. example: src\\main\\resources\\Database.txt");
+        String newFilePath = input.next();
+        return newFilePath;
+    }
     public void successfulMessage(){
         System.out.println("Your request has been processed successfully\n");
     }

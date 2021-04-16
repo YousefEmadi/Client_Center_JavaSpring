@@ -13,6 +13,7 @@ public class Controller {
             case FIND -> {doFindAndShowClient();}
             case REMOVE -> {doFindAndRemoveClient();}
             case LIST -> {doListOfAllClients();}
+            case COPY -> {doCopyDatabaseIntoFile();}
             case EXIT -> {doExit();}
         }
     }
@@ -43,6 +44,11 @@ public class Controller {
 
     public void doListOfAllClients(){
         myUI.showDatabaseClientList(myClientList.retrieveDatabaseClientList());
+    }
+
+    public void doCopyDatabaseIntoFile() {
+        String newFilePath = myUI.getNewFilePath();
+        myClientList.copyDatabaseToNewFile(newFilePath);
     }
 
     public void doExit(){

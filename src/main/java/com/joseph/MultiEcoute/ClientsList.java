@@ -49,7 +49,7 @@ public class ClientsList implements ClientDatabase {
     @Override
     public boolean writeIntoDatabase(Client client, String filePath) {
         try {
-            FileWriter myWriter = new FileWriter(DEFAULT_FILE_PATH, true);
+            FileWriter myWriter = new FileWriter(filePath, true);
             myWriter.write(
             client.id + ";" +
                 client.name_first + ";" +
@@ -106,9 +106,12 @@ public class ClientsList implements ClientDatabase {
     }
 
     @Override
-    public boolean copyDatabaseToNewFile(String filePath) {
+    public boolean copyDatabaseToNewFile(String newfilePath) {
         List<Client> copyOfClientList = retrieveDatabaseClientList();
-
+        for (Client client: copyOfClientList
+             ) {
+            writeIntoDatabase(client, newfilePath);
+        }
 
         return false;
     }

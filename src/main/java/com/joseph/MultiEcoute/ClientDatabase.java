@@ -9,7 +9,7 @@ public interface ClientDatabase {
     boolean removeClient(Client client);
     boolean writeIntoDatabase(Client client, String filePath);
     List<Client> retrieveDatabaseClientList();
-    boolean copyDatabaseToNewFile(String filePath);
+    boolean copyDatabaseToNewFile(String newfilePath);
 }
 
 
