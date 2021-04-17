@@ -1,5 +1,5 @@
 package com.joseph.MultiEcoute;
-
+/*
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -12,28 +12,28 @@ import java.util.Scanner;
 
 public class ClientsList implements ClientDatabase {
 
-    private List<Client> clientList = new ArrayList<Client>();
+    private List<Member> clientList = new ArrayList<Member>();
 
     public static final String DEFAULT_FILE_PATH = "src\\main\\resources\\Database.txt";
 
     @Override
-    public boolean addNewClient(Client newClient) {
+    public boolean addNewClient(Member newClient) {
         return clientList.add(newClient);
     }
 
 
 
 //    @Override
-//    public Client findClientFromCurrentSession(int id) {
-//        for (Client cl : clientList) {
+//    public Member findClientFromCurrentSession(int id) {
+//        for (Member cl : clientList) {
 //            if (cl.id == id) return cl;
 //        }
 //        return null;
 //    }
 
     @Override
-    public Client findClientFromDatabaseClientList(int id) {
-        for (Client cl : retrieveDatabaseClientList()) {
+    public Member findClientFromDatabaseClientList(int id) {
+        for (Member cl : retrieveDatabaseClientList()) {
             if (cl.id == id) return cl;
         }
         return null;
@@ -41,13 +41,13 @@ public class ClientsList implements ClientDatabase {
 
 
     @Override
-    public boolean removeClientFromList(Client client) {
+    public boolean removeClientFromList(Member client) {
         return clientList.remove(client);
     }
 
 
     @Override
-    public boolean writeIntoDatabase(Client client, String filePath) {
+    public boolean writeIntoDatabase(Member client, String filePath) {
         try {
             FileWriter myWriter = new FileWriter(filePath, true);
             myWriter.write(
@@ -70,14 +70,14 @@ public class ClientsList implements ClientDatabase {
 
 
     @Override
-    public List<Client> retrieveDatabaseClientList() {
+    public List<Member> retrieveDatabaseClientList() {
         try {
             File myObj = new File("src\\main\\resources\\Database.txt");
             Scanner myReader = new Scanner(myObj);
             System.out.println("\n-- Database interaction -- ");
 
             // create a temporary Arraylist to hold client objects will be created by output stream from file
-            List<Client> updateClientList = new ArrayList<Client>();
+            List<Member> updateClientList = new ArrayList<Member>();
             while (myReader.hasNextLine()) {
 
                 // temporary Array from raw file data to create client objects
@@ -91,7 +91,7 @@ public class ClientsList implements ClientDatabase {
                 String dob = tempArray[4];
                 String gender = tempArray[5];
                 double balance = Double.parseDouble(tempArray[6]);
-                Client clientToMainList = new Client(id,fname,lname,phone,dob, gender, balance);
+                Member clientToMainList = new Member(id,fname,lname,phone,dob, gender, balance);
                 updateClientList.add(clientToMainList);
 
             }
@@ -106,8 +106,8 @@ public class ClientsList implements ClientDatabase {
     }
 
     @Override
-    public boolean writeListToDatabaseFile(String newfilePath, List<Client> clientList) {
-        for (Client client: clientList
+    public boolean writeListToDatabaseFile(String newfilePath, List<Member> clientList) {
+        for (Member client: clientList
              ) {
             writeIntoDatabase(client, newfilePath);
         }
@@ -128,4 +128,4 @@ public class ClientsList implements ClientDatabase {
 
 } //end of class:ClientsList
 
-
+*/

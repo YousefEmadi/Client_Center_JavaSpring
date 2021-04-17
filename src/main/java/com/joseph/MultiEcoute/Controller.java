@@ -1,6 +1,5 @@
 package com.joseph.MultiEcoute;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -23,7 +22,7 @@ public class Controller {
 
     // Process and Do
     public void doCreate(){
-        Client newClient = myUI.getNewClientToCreate();
+        Member newClient = myUI.getNewClientToCreate();
         if (newClient != null){
             myClientList.addNewClient(newClient);
             myClientList.writeIntoDatabase(newClient, ClientsList.DEFAULT_FILE_PATH);
@@ -34,13 +33,13 @@ public class Controller {
 
     public void doFindAndShowClient(){
         int id = myUI.getClientIdToSearch();
-        Client foundClient = myClientList.findClientFromDatabaseClientList(id);
+        Member foundClient = myClientList.findClientFromDatabaseClientList(id);
         myUI.showClient(foundClient);
     }
 
     public void doFindAndRemoveClient(){
         int id = myUI.getClientIdToRemove();
-        Client foundClient = myClientList.findClientFromDatabaseClientList(id);
+        Member foundClient = myClientList.findClientFromDatabaseClientList(id);
         myClientList.removeClientFromList(foundClient);
 
 
@@ -52,7 +51,7 @@ public class Controller {
 
     public void doCopyDatabaseIntoFile() {
         String newFilePath = myUI.getNewFilePath();
-        List<Client> copyOfClientList = myClientList.retrieveDatabaseClientList();
+        List<Member> copyOfClientList = myClientList.retrieveDatabaseClientList();
         myClientList.writeListToDatabaseFile(newFilePath, copyOfClientList);
     }
 

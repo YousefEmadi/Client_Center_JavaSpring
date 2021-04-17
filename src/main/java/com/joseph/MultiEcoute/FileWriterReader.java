@@ -2,12 +2,10 @@ package com.joseph.MultiEcoute;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class FileWriterReader {
 
-    public void WriteIntoFile(Client client) {
+    public void WriteIntoFile(Member client) {
         try {
             FileWriter myWriter = new FileWriter("src\\\\main\\resources\\Database.txt", true);
             myWriter.write(
