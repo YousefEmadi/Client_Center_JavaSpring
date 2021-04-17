@@ -4,12 +4,13 @@ import java.util.List;
 
 public interface ClientDatabase {
     boolean addNewClient(Client newClient);
-    Client findClientFromCurrentSession(int id);
+//    Client findClientFromCurrentSession(int id);
     Client findClientFromDatabaseClientList(int id);
-    boolean removeClient(Client client);
+    boolean removeClientFromList(Client client);
     boolean writeIntoDatabase(Client client, String filePath);
     List<Client> retrieveDatabaseClientList();
-    boolean copyDatabaseToNewFile(String newfilePath);
+    boolean writeListToDatabaseFile(String newfilePath, List<Client> clientList);
+    void deleteDatabaseFile();
 }
 
 

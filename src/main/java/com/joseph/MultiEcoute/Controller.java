@@ -1,5 +1,8 @@
 package com.joseph.MultiEcoute;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Controller {
 
     //new objects
@@ -38,8 +41,9 @@ public class Controller {
     public void doFindAndRemoveClient(){
         int id = myUI.getClientIdToRemove();
         Client foundClient = myClientList.findClientFromDatabaseClientList(id);
-        myClientList.removeClient(foundClient);
-        myUI.successfulMessage();
+        myClientList.removeClientFromList(foundClient);
+
+
     }
 
     public void doListOfAllClients(){
@@ -48,7 +52,8 @@ public class Controller {
 
     public void doCopyDatabaseIntoFile() {
         String newFilePath = myUI.getNewFilePath();
-        myClientList.copyDatabaseToNewFile(newFilePath);
+        List<Client> copyOfClientList = myClientList.retrieveDatabaseClientList();
+        myClientList.writeListToDatabaseFile(newFilePath, copyOfClientList);
     }
 
     public void doExit(){

@@ -23,13 +23,13 @@ public class ClientsList implements ClientDatabase {
 
 
 
-    @Override
-    public Client findClientFromCurrentSession(int id) {
-        for (Client cl : clientList) {
-            if (cl.id == id) return cl;
-        }
-        return null;
-    }
+//    @Override
+//    public Client findClientFromCurrentSession(int id) {
+//        for (Client cl : clientList) {
+//            if (cl.id == id) return cl;
+//        }
+//        return null;
+//    }
 
     @Override
     public Client findClientFromDatabaseClientList(int id) {
@@ -41,7 +41,7 @@ public class ClientsList implements ClientDatabase {
 
 
     @Override
-    public boolean removeClient(Client client) {
+    public boolean removeClientFromList(Client client) {
         return clientList.remove(client);
     }
 
@@ -74,10 +74,10 @@ public class ClientsList implements ClientDatabase {
         try {
             File myObj = new File("src\\main\\resources\\Database.txt");
             Scanner myReader = new Scanner(myObj);
-            System.out.println("\nDatabase content:");
+            System.out.println("\n-- Database interaction -- ");
 
             // create a temporary Arraylist to hold client objects will be created by output stream from file
-            List<Client> tempClientList = new ArrayList<Client>();
+            List<Client> updateClientList = new ArrayList<Client>();
             while (myReader.hasNextLine()) {
 
                 // temporary Array from raw file data to create client objects
@@ -92,11 +92,11 @@ public class ClientsList implements ClientDatabase {
                 String gender = tempArray[5];
                 double balance = Double.parseDouble(tempArray[6]);
                 Client clientToMainList = new Client(id,fname,lname,phone,dob, gender, balance);
-                tempClientList.add(clientToMainList);
+                updateClientList.add(clientToMainList);
 
             }
             myReader.close();
-            return tempClientList;
+            return updateClientList;
         } catch (FileNotFoundException e) {
             System.out.println("something is wrong with reading boat.txt");
             e.printStackTrace();
@@ -106,14 +106,23 @@ public class ClientsList implements ClientDatabase {
     }
 
     @Override
-    public boolean copyDatabaseToNewFile(String newfilePath) {
-        List<Client> copyOfClientList = retrieveDatabaseClientList();
-        for (Client client: copyOfClientList
+    public boolean writeListToDatabaseFile(String newfilePath, List<Client> clientList) {
+        for (Client client: clientList
              ) {
             writeIntoDatabase(client, newfilePath);
         }
 
         return false;
+    }
+
+    public void updateDatabaseFile(){
+
+    }
+
+    @Override
+    public void deleteDatabaseFile() {
+        File myObj = new File("src\\main\\resources\\Database.txt");
+        myObj.delete();
     }
 
 

@@ -12,8 +12,8 @@ public class UserPanel {
     public userChoice requestUserOption(){
         System.out.println("Please, select one of these actions");
         System.out.println("  1. Add a new client to database");
-        System.out.println("  2. Find a client by his/her ID from database");
-        System.out.println("  3. Remove a client by his/her ID from current session");
+        System.out.println("  2. Find a client by ID from database");
+        System.out.println("  3. Remove a client by ID from current session");
         System.out.println("  4. List all of the clients from database");
         System.out.println("  5. Copy database into a new file");
         System.out.println("  0. Exit from this user panel");
@@ -34,15 +34,16 @@ public class UserPanel {
     public Client getNewClientToCreate(){
         System.out.print("Please enter id for new client: ");
         int id = input.nextInt();
+        input.nextLine(); //to consume left-over line after nextInt
 
         System.out.print("Please enter client first name: ");
-        String fname = input.next();
+        String fname = input.nextLine();
 
         System.out.print("Please enter client last name: ");
-        String lname = input.next();
+        String lname = input.nextLine();
 
         System.out.print("Please enter client telephone: ");
-        String phone = input.next();
+        String phone = input.nextLine();
 
         Client newClient = new Client(id,fname,lname,phone,"2000-01-01", "M",0);
         return newClient;
@@ -98,8 +99,6 @@ public class UserPanel {
     public void exitMessage(){
         System.out.println("Good luck and see you next time :)");
     }
-
-
 
 }
 
